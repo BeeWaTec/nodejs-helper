@@ -12,6 +12,16 @@ const options = {
         colorize: false,
         timestamp: true,
     },
+    error_app: {
+        level: 'error',
+        filename: `${appRoot}/logs/app.log`,
+        handleExceptions: true,
+        json: true,
+        maxsize: 5242880, // 5MB
+        maxFiles: 5,
+        colorize: false,
+        timestamp: true,
+    },
     info: {
         level: 'info',
         filename: `${appRoot}/logs/app.log`,
@@ -40,6 +50,7 @@ const logger = winston.createLogger({
     ),
     transports: [
         new winston.transports.File(options.error),
+        new winston.transports.File(options.error_app),
         new winston.transports.File(options.info),
         new winston.transports.Console(options.debug),
     ],
